@@ -17,17 +17,39 @@
         transform: translatey(0px);
       }
     }
+
+    @keyframes grow {
+      0% {
+        transform: scale(1);
+        opacity: 0;
+      }
+      50% {
+        transform: scale(1.2);
+        opacity: 0.5;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
     .float {
       animation: float 3s ease-in-out infinite;
     }
+
     .fade-in {
       opacity: 0;
       animation: fadeIn 2s forwards;
     }
+
     @keyframes fadeIn {
       to {
         opacity: 1;
       }
+    }
+
+    .grow {
+      animation: grow 1s ease-in-out forwards;
     }
   </style>
 </head>
@@ -41,32 +63,52 @@
         Inia 2️⃣2️⃣ aavathu pirantha naal vaalthukkal da kavin  .....Ippa pola eppavum happy aa irudaa dr 🩺 ....Party  🍺🍧 ellaaam velaiku kuduthidu  Kandy Bus  🚍🚌edukka ready aakudaa karadi kuddi 🧸 !!!
     </p>
 
-    <!-- Tree Chart with Images -->
+    <!-- Tree Chart with Animated Images -->
     <div class="relative w-full h-auto flex flex-col items-center mb-8">
-        <img src="k11.jpg" alt="Main Photo" class="w-40 h-40 sm:w-60 sm:h-60 rounded-full mb-4 border-4 border-white shadow-lg">
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          <img src="k2.jpg" alt="Balloon" class="w-24 h-24 sm:w-40 sm:h-40 float rounded-full">
-          <img src="k3.jpg" alt="Cake" class="w-24 h-24 sm:w-40 sm:h-40 float rounded-full">
-          <img src="k4.jpg" alt="Gift" class="w-24 h-24 sm:w-40 sm:h-40 float rounded-full">
-          <img src="k5.jpg" alt="Party" class="w-24 h-24 sm:w-40 sm:h-40 float rounded-full">
-        </div>
+      <img 
+        src="k11.jpg" 
+        alt="Main Photo" 
+        class="w-40 h-40 sm:w-60 sm:h-60 mb-4 border-4 border-white shadow-lg grow" 
+        style="animation-delay: 0s;">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <img 
+          src="k2.jpg" 
+          alt="Balloon" 
+          class="w-24 h-24 sm:w-40 sm:h-40 border-4 border-white shadow-lg grow" 
+          style="animation-delay: 1s;">
+        <img 
+          src="k3.jpg" 
+          alt="Cake" 
+          class="w-24 h-24 sm:w-40 sm:h-40 border-4 border-white shadow-lg grow" 
+          style="animation-delay: 2s;">
+        <img 
+          src="k4.jpg" 
+          alt="Gift" 
+          class="w-24 h-24 sm:w-40 sm:h-40 border-4 border-white shadow-lg grow" 
+          style="animation-delay: 3s;">
+        <img 
+          src="k5.jpg" 
+          alt="Party" 
+          class="w-24 h-24 sm:w-40 sm:h-40 border-4 border-white shadow-lg grow" 
+          style="animation-delay: 4s;">
       </div>
+    </div>
 
     <!-- Button -->
     <button 
       class="px-4 py-2 sm:px-6 sm:py-3 bg-white text-purple-700 font-bold rounded-full shadow-lg hover:bg-purple-700 hover:text-white transition-all duration-300"
       onclick="revealMessage()">
-      Click for a Surprise 🎁
+      Click Pannu Surprise irukku 🎁
     </button>
 
     <!-- Hidden Surprise Message -->
-    <div id="surprise" class="mt-8 hidden">
-      <p class="text-white text-lg sm:text-xl font-semibold mb-4 fade-in">
-        Ithu thaan kavin oru kaalathula maintain pannina body...but medicine padikka thodanki melinchidaan paavam 🥳
-      </p>
-      <img src="kswap.jpg" alt="Celebration" class="w-32 h-32 sm:w-40 sm:h-40 rounded-full mx-auto fade-in" style="animation-delay: 0.5s;">
-    </div>
-  </div>
+<div id="surprise" class="mt-8 hidden">
+  <p class="text-white text-lg sm:text-xl font-semibold mb-4 fade-in">
+    Ithu thaan kavin oru kaalathula maintain pannina body...but medicine padikka thodanki melinchidaan paavam 🥳
+  </p>
+  <img src="kswap.jpg" alt="Celebration" class="w-32 h-32 sm:w-40 sm:h-40 border-4 border-white shadow-lg mx-auto fade-in" style="animation-delay: 0.5s;">
+</div>
+
 
   <script>
     function revealMessage() {
@@ -74,6 +116,15 @@
       surprise.classList.remove('hidden');
       surprise.scrollIntoView({ behavior: 'smooth' });
     }
+
+    // Trigger animations
+    document.addEventListener("DOMContentLoaded", () => {
+      const images = document.querySelectorAll(".grow");
+      images.forEach((img, index) => {
+        img.style.animationDelay = `${index * 1}s`;
+        img.classList.add("fade-in");
+      });
+    });
   </script>
 </body>
 </html>
